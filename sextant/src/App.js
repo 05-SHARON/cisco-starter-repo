@@ -1,34 +1,19 @@
+import React from 'react';
+import PublicIPDisplay from './PublicIPDisplay'; // Import the PublicIPDisplay component
+import Banner from './Banner'; // Import your container components (if you have them)
+import Exhibit from './Exhibit';
 
-import './App.css';
-
-// Banner Component
-function Banner() {
-  return (
-    <div className="Banner">
-      <h1>My Site Title</h1>
-    </div>
-  );
-}
-
-// Exhibit Component
-function Exhibit({ children }) {
-  return (
-    <div className="Exhibit">
-      {children}
-    </div>
-  );
-}
-
-// App Component
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Banner /> {/* Display the Banner component */}
-      </header>
-      <Exhibit>
-        {/* Add other components inside the Exhibit component */}
+      {/* Other components and content */}
+      <Banner> {/* Wrap in a container component */}
+        <PublicIPDisplay ipType="IPv4" />
+      </Banner>
+      <Exhibit> {/* Wrap in another container component */}
+        <PublicIPDisplay ipType="IPv6" />
       </Exhibit>
+      {/* Other components and content */}
     </div>
   );
 }
