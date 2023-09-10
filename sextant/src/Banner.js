@@ -3,7 +3,9 @@ import React from 'react';
 function Banner() {
   return (
     <div className="banner">
-      {/* Your banner content goes here */}
+      <h1>Welcome to Sextant</h1>
+      <p>Your Ultimate Navigation Tool</p>
+      <button>Get Started</button>
     </div>
   );
 }

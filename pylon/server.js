@@ -1,14 +1,26 @@
-const webSocketServer = require('websocket').server;
 const http = require('http');
+const WebSocket = require('ws');
 
-const server = http.createServer();
-server.listen(55455);
-const wsServer = new webSocketServer({ httpServer: server });
+const server = http.createServer((req, res) => {
+  // Handle HTTP requests if needed
+});
 
-wsServer.on('request', function (request) {
-    console.log('establishing a new connection with client');
-    var connection = request.accept(null, request.origin);
-    setInterval(() => {
-        connection.sendUTF(new Date().getTime())
-    }, 100);
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', (ws) => {
+  console.log('WebSocket connection established');
+
+  // Send a timestamp to the client every second
+  const interval = setInterval(() => {
+    ws.send(new Date().getTime().toString());
+  }, 1000);
+
+  ws.on('close', () => {
+    console.log('WebSocket connection closed');
+    clearInterval(interval);
+  });
+});
+
+server.listen(55455, () => {
+  console.log('WebSocket server is running on port 55455');
 });
